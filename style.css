@@ -50,7 +50,7 @@
     font-size: 1em;
     height: 65px;
 }
-.button:hover {
+.button:hover, #sum:hover, #clear:hover, #backspace:hover {
     background: lightcoral;
 }
 .number {
