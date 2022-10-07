@@ -1,26 +1,25 @@
-/*  Taskulaskin 
-    Perustoiminnallisuudet:
-        - yhteenlasku
-        - vähennyslasku
-        - kertolasku
-        - jakolasku
+/* Calculator with basic functionalities
+        - addition
+        - subtraction
+        - multiplication
+        - division
 */
 
-//muuttujien alustus
+//Initializing variables
 let currentTotal = 0;
 let buffer = "0";
 let operatorBuffer = null;
 
-//kontekstin luominen HTML:n ja javascriptin välille
+//Creating context between javascript and html
 const buttons = document.querySelector(".buttons");
 const numberButtons = document.querySelectorAll(".number");
 const operatorButtons = document.querySelectorAll(".operator");
 const calculatorDisplay = document.querySelector("#calculatorDisplay");
 const resultDisplay = document.querySelector('#resultDisplay');
 
-//Käsitellään mitä tapahtuu, kun painetaan jotain nappia
+//For handling button clicks
 function handleButtonClick(buttonValue) {
-    //Tarkistetaan onko painettu nappi numero- vai jokin muu
+    //Check if the pressed button is a number or an operator
     if(isNaN(parseInt(buttonValue))) {
         handleOperatorClick(buttonValue);
     }
@@ -31,18 +30,20 @@ function handleButtonClick(buttonValue) {
     calculatorDisplay.value = buffer;
 }
 
-//Operaattorien (C(lear), +, -, *, /, backspace) toiminnot
+//For handling operator button actions
 function handleOperatorClick(buttonValue) {
     switch(buttonValue) {
         case "C":
-            //Alustetaan muuttujat, tyhjennetään ruudut, palataan alkutilaan
+            //Clear and format the screens, return to the initial status
+            //and initialize variables for use in a new calculation
             buffer = "0";
             currentTotal = 0;
             operatorBuffer = null;
             showResult("");
             break;
         case "=":
-            //Jos ei ole laskutoimitusta, jota näyttää, keskeytetään eikä näytetä mitään
+            //If there is no previous calculation to display the results of
+            //cancel the operation and display nothing.
             if(operatorBuffer === null) {
                 return;
             }
@@ -52,7 +53,9 @@ function handleOperatorClick(buttonValue) {
             currentTotal = 0;
             break;
         case "←":
-            //Poistetaan numerot näytöltä yksi kerrallaan, jos ruudulla vain yksi numero, laitetaan näkyviin 0
+            //Backspace deletes numbers from the main screen one at a time
+            //starting from the last one
+            //If there are no more numbers, display 0
             if(buffer.length === 1) {
                 buffer = "0";
             }
@@ -78,17 +81,23 @@ function handleNumberClick(buttonValue) {
 }
 
 function handleMath(buttonValue) {
+    //Parse what is displayed on the main screen of the app (a string) 
+    //into a variable for calculations
     const internalBuffer = parseInt(buffer);
 
+    //If there is no previous calculation operation in memory, store the current
+    //input into memory and display it and the current operation in the results area
     if(currentTotal === 0) {
         currentTotal = internalBuffer;
-        //Näytetään tulosnäytössä syötetty luku ja toimenpide
         showResult (currentTotal + " " + buttonValue);
     }
+    //Otherwise handle the calculation operation and display the results
     else {
         flushOperation(internalBuffer);
     }
 
+    //Set the current operation into memory, clear the buffer and the main screen
+    //for a new input
     operatorBuffer = buttonValue;
     buffer = "0";
 }
@@ -104,29 +113,30 @@ function flushOperation(internalBuffer) {
         currentTotal *= internalBuffer;
     }
     else {
-        //Koska 0 ei saa jakaa, näytetään ruudulla varoitus jos tätä yritetään
+        //Can't divide by 0, this warning is shown if someone tries this.
         if(internalBuffer === 0) {
-            showResult("Älä laita tämmöstä.");
+            showResult("Don't divide by 0");
         }
         else {
             currentTotal /= internalBuffer;
         }
     }
 
-    //Näytetään tulosnäytössä tulos ja viimeiseksi suoritetty operaatio
+    //Displaying the current total and the last used operator on the result display
     showResult(currentTotal + " " + operatorBuffer);
 }
 
-//Tulosnäytöllä näytettävät asiat/viestit
+//Messages and results shown on the result screen
 function showResult(message)
 {
     resultDisplay.value = message;
 }
 
-//Laskimen käyttäminen näppäimistöllä
+//Using calculator with keypresses
+//TODO
 function handleKeyPress() {
 
 }
 
-//Listenerien lisääminen
+//Adding listeners
 buttons.addEventListener("click", (event) => { handleButtonClick(event.target.innerHTML); } );
