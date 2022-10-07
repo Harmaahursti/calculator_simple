@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="#">
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body>
+        
+        <div class="calc" id="main">
+                <div class="displayarea" id="display">
+                    <input type="text" class="display resultdisplay" id="resultDisplay" disabled="true"></input>
+                    <input type="text" class="display calculatordisplay" id="calculatorDisplay" value="0">
+                </div>
+                <div class="buttons">
+                    <button class="button operator span-2" id="clear">C</button>
+                    <button class="button operator" id="backspace">&larr;</button>
+                    <button class="button operator" id="divide">&divide;</button>
+                    <button class="button number" id="1">1</button>
+                    <button class="button number" id="2">2</button>
+                    <button class="button number" id="3">3</button>
+                    <button class="button operator" id="multiply">*</button>
+                    <button class="button number" id="4">4</button>
+                    <button class="button number" id="5">5</button>
+                    <button class="button number" id="6">6</button>
+                    <button class="button operator" id="minus">-</button>
+                    <button class="button number" id="7">7</button>
+                    <button class="button number" id="8">8</button>
+                    <button class="button number" id="9">9</button>
+                    <button class="button operator" id="plus">+</button>
+                    <button class="button number span-3" id="0">0</button>
+                    <button class="button operator" id="sum">=</button>
+                </div>
+                <script src="calculator_simple.js" defer></script>
+        </div>
+    </body>
+</html>

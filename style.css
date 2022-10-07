@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+* {
+    box-sizing: border-box;
+}
+
+.calc {
+    max-width: 400px;
+    background:rgb(34, 34, 34);
+}
+
+.displayarea {
+    border: solid black;
+    border-bottom: none;
+    padding: 0.1em;
+}
+
+.display {
+    font-family: 'Orbitron';
+    text-align: right;
+    height: 50px;
+    padding: 0.3em;
+    border: 0;
+    width: 100%;
+}
+
+.resultdisplay {
+    color: whitesmoke;
+    font-size: 1em;
+    background-color: transparent;
+    font-size: small;
+}
+
+.calculatordisplay {
+    background-color: transparent;
+    color: whitesmoke;
+    font-size: 1.5em;
+}
+
+.buttons {
+    padding: 0.1em;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    border: solid black;
+    border-top: none;
+}
+
+.button {
+    font-family: 'Orbitron';
+    font-size: 1em;
+    height: 65px;
+}
+.button:hover {
+    background: lightcoral;
+}
+.number {
+    margin: 0.1em;
+    border: none;
+    border: 0;
+}
+
+.operator {
+    margin: 0.1em;
+    background: purple;
+    border: none;
+}
+
+#sum, #clear, #backspace {
+    background-color: blueviolet;
+}
+
+.span-2 {
+    grid-column: span 2;
+}
+
+.span-3 {
+    grid-column: span 3;
+}
